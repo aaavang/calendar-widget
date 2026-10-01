@@ -40,11 +40,11 @@ You don't need billing. The free Calendar API quota is far more than a small sit
 
 The recommended free option is GitHub + jsDelivr:
 
-1. Create a **public** GitHub repository named `squarespace-calendar-widget` and add
+1. Create a **public** GitHub repository (this one is `aaavang/calendar-widget`) and add
    `calendar-widget.js`. The `.gitignore` keeps the files that contain your key out of it.
 2. Create a release (or tag) named `v1.0.0`.
 3. The file is now served at
-   `https://cdn.jsdelivr.net/gh/YOUR_GITHUB_USERNAME/squarespace-calendar-widget@v1.0.0/calendar-widget.js`
+   `https://cdn.jsdelivr.net/gh/aaavang/calendar-widget@v1.0.0/calendar-widget.js`
 
 To ship a change, commit it, tag `v1.0.1`, and update the version in the `<script src>` line in
 Squarespace. Pinning a version means a bad change never reaches your site by surprise, and
