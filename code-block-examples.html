@@ -1,0 +1,37 @@
+<!-- =====================================================================
+  Per-page Code Blocks. Requires footer-injection.html installed once site-wide.
+  Copy ONE of these into a Squarespace Code Block (uncheck "Display Source").
+  Anything you don't set uses the defaults from Code Injection.
+====================================================================== -->
+
+<!-- Basic: uses all site-wide defaults -->
+<div class="gcw"></div>
+
+<!-- Homepage teaser: carousel of the next 6 events -->
+<div class="gcw" data-max-events="6"></div>
+
+<!-- Grid instead of carousel (all cards visible, wraps onto new rows) -->
+<div class="gcw" data-layout="grid"></div>
+
+<!-- Events page: list layout, whole flyers visible -->
+<div class="gcw" data-layout="list" data-image-fit="contain" data-max-events="20"></div>
+
+<!-- A different calendar (e.g. classes) with its own color -->
+<div class="gcw" data-calendar-id="other_calendar_id@group.calendar.google.com" data-accent="#7a3b8f"></div>
+
+<!-- Two calendars merged into one feed (comma-separated) -->
+<div class="gcw" data-calendar-id="first@group.calendar.google.com, second@group.calendar.google.com"></div>
+
+<!--
+  ALL OPTIONS (each overrides the matching site-wide default)
+  data-calendar-id    calendar ID(s), comma-separated to merge
+  data-max-events     number of events
+  data-days-ahead     how far ahead to look
+  data-layout         carousel | grid | list
+  data-image-fit      cover | contain
+  data-accent         color, e.g. #0f7b5f
+  data-fallback-image image URL for events without one
+  data-time-zone      e.g. America/Chicago
+  data-empty-text     message when there are no events
+  data-api-key        only if this block needs a different key
+-->

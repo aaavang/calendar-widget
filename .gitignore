@@ -1,0 +1,5 @@
+# These hold the API key and site settings; they belong in Squarespace, not in the public repo
+footer-injection.html
+calendar-widget.html
+# Outdated first-version demo
+demo.html

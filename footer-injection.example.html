@@ -1,0 +1,42 @@
+<!-- =====================================================================
+  Google Calendar Event Cards: SITE-WIDE INSTALL
+  Copy to footer-injection.html, fill in your key and calendar, then paste it ONCE into Squarespace:
+    Settings > Developer Tools > Code Injection > FOOTER
+  Then add a Code Block containing  <div class="gcw"></div>  anywhere you want
+  events to appear. See code-block-examples.html for variations.
+  The widget's code lives in calendar-widget.js, hosted separately (see README).
+====================================================================== -->
+<script>
+  // Site-wide defaults. Any block can override one with a data-* attribute,
+  // e.g. maxEvents below = data-max-events="3" on a block.
+  window.GCW_DEFAULTS = {
+    apiKey: 'YOUR_GOOGLE_API_KEY',
+    calendarId: 'your_calendar_id@group.calendar.google.com',
+    maxEvents: 9,           // how many upcoming events to show
+    daysAhead: 365,         // how far ahead to look
+    layout: 'carousel',     // 'carousel' (swipeable row), 'grid' (cards) or 'list' (wide rows)
+    imageFit: 'cover',      // 'cover' crops to fill; 'contain' shows whole image (flyers)
+    accent: '#0f7b5f',      // brand color for dates, icons, buttons
+    fallbackImage: '',      // image URL for events without one ('' = colored placeholder)
+    timeZone: '',           // e.g. 'America/Chicago' ('' = the calendar's own time zone)
+    emptyText: 'No upcoming events right now. Check back soon!',
+    showDescription: false  // true = also show the description text (minus the Label: value lines)
+
+    // Optional: replace the "Label: value" list. Labels listed here get an icon and come first;
+    // other labels still show with a generic icon. Icons: music, mic, person, ticket, info.
+    // fields: [
+    //   { labels: ['band', 'music', 'musicians'], icon: 'music', highlight: true },
+    //   { labels: ['caller'], icon: 'mic' },
+    //   { labels: ['teacher', 'instructor'], icon: 'person' },
+    //   { labels: ['cost', 'price', 'admission', 'tickets'], icon: 'ticket' }
+    // ]
+  };
+</script>
+<script src="https://cdn.jsdelivr.net/gh/YOUR_GITHUB_USERNAME/squarespace-calendar-widget@v1.0.0/calendar-widget.js" defer></script>
+<!--
+  EVENT IMAGES (first match wins)
+  1. An image from Google Drive attached to the event (file shared "Anyone with the link").
+  2. An image link anywhere in the event description, e.g. a line like
+       image: https://images.squarespace-cdn.com/.../flyer.jpg
+     Google Drive share links work too. The link is hidden from the displayed description.
+-->

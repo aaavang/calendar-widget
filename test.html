@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Calendar Widget Test</title>
+<style>
+  body{margin:0;background:#f5f3ee;font-family:Georgia,serif;color:#222}
+  main{max-width:1180px;margin:0 auto;padding:48px 16px 96px}
+  h2{font-size:2.2rem;margin:56px 0 24px;font-weight:400}
+  h2:first-child{margin-top:0}
+  .note{font-family:system-ui,sans-serif;font-size:.9rem;color:#666;margin:-12px 0 24px}
+</style>
+</head><body><main>
+<p class="note">Live test: loads footer-injection.html like Squarespace's Code Injection, with the local calendar-widget.js. Edit either and refresh.</p>
+
+<h2>Coming up next</h2>
+<!-- These stand in for Squarespace Code Blocks -->
+<div class="gcw"></div>
+
+<h2>All events (list)</h2>
+<div class="gcw" data-layout="list" data-image-fit="contain" data-max-events="5"></div>
+</main>
+<script id="loader">
+  if (location.protocol === 'file:') {
+    document.querySelector('main').insertAdjacentHTML('afterbegin',
+      '<p>Open this through the local server (serve.ps1), not by double-clicking the file.</p>');
+  } else {
+    // Mimic Squarespace's footer Code Injection
+    fetch('footer-injection.html', { cache: 'no-store' }).then(r => r.text()).then(html => {
+      const holder = document.createElement('div');
+      holder.innerHTML = html;
+      document.body.append(...holder.childNodes);
+      // Scripts inserted via innerHTML don't run; re-create them so they do
+      document.body.querySelectorAll(':scope > script:not(#loader):not([data-ran])').forEach(old => {
+        const s = document.createElement('script');
+        const src = old.getAttribute('src');
+        // Use the local copy of the widget instead of the hosted one
+        if (src) s.src = /calendar-widget\.js/.test(src) ? 'calendar-widget.js' : src;
+        else s.textContent = old.textContent;
+        s.dataset.ran = '';
+        old.replaceWith(s);
+      });
+    });
+  }
+</script>
+</body></html>
