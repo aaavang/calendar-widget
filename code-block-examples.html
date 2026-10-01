@@ -10,6 +10,9 @@
 <!-- Homepage teaser: carousel of the next 6 events -->
 <div class="gcw" data-max-events="6"></div>
 
+<!-- Month calendar: days with events filled in; click a day to see its events -->
+<div class="gcw" data-layout="calendar"></div>
+
 <!-- Grid instead of carousel (all cards visible, wraps onto new rows) -->
 <div class="gcw" data-layout="grid"></div>
 
@@ -27,7 +30,8 @@
   data-calendar-id    calendar ID(s), comma-separated to merge
   data-max-events     number of events
   data-days-ahead     how far ahead to look
-  data-layout         carousel | grid | list
+  data-layout         carousel | grid | list | calendar
+  data-week-start     sunday | monday (calendar layout)
   data-image-fit      cover | contain
   data-accent         color, e.g. #0f7b5f
   data-fallback-image image URL for events without one

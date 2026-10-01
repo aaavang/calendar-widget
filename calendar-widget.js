@@ -54,6 +54,51 @@
 .gcw .gcw-dot[aria-current="true"]::before{width:24px;opacity:1;background:var(--gcw-accent)}
 .gcw .gcw-count{min-width:5ch;text-align:center;font-size:.9rem;color:var(--gcw-muted);font-variant-numeric:tabular-nums}
 
+/* Calendar: month grid, event days filled; titles appear when the block is wide enough */
+.gcw .gcw-cal{container-type:inline-size;background:var(--gcw-card);color:var(--gcw-text);border:1px solid var(--gcw-border);border-radius:var(--gcw-radius);box-shadow:var(--gcw-shadow);padding:clamp(14px,3vw,28px)}
+.gcw .gcw-cal-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:14px}
+.gcw .gcw-cal-title{font-size:clamp(1.2rem,2.5vw,1.6rem)}
+.gcw .gcw-cal-nav{display:flex;align-items:center;gap:8px}
+.gcw .gcw-cal-nav .gcw-nav-btn{width:40px;height:40px;box-shadow:none}
+.gcw .gcw-cal-today{padding:9px 16px;border-radius:999px;border:1px solid var(--gcw-border);font-weight:600;font-size:.9rem;color:var(--gcw-accent)}
+.gcw .gcw-cal-today:hover{background:color-mix(in srgb,var(--gcw-accent) 10%,transparent)}
+.gcw .gcw-cal-today[hidden]{display:none}
+.gcw .gcw-cal-grid{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:4px}
+.gcw .gcw-cal-wd{padding:2px 0 8px;text-align:center;font-size:.7rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--gcw-muted)}
+.gcw .gcw-cal-day{position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;aspect-ratio:1;min-width:0;border-radius:10px;font-size:.95rem;color:var(--gcw-text);background:color-mix(in srgb,var(--gcw-text) 4%,transparent)}
+.gcw .gcw-cal-day.is-out{background:transparent;opacity:.35}
+.gcw .gcw-cal-day.is-past:not(.has-events){color:var(--gcw-muted)}
+.gcw .gcw-cal-num{display:grid;place-items:center;width:2em;height:2em;border-radius:50%;font-weight:600;line-height:1;flex:none}
+.gcw .gcw-cal-day.is-today .gcw-cal-num{box-shadow:inset 0 0 0 2px var(--gcw-accent)}
+.gcw .gcw-cal-day.has-events{background:var(--gcw-accent);color:#fff;cursor:pointer;transition:filter .2s ease}
+.gcw .gcw-cal-day.has-events:hover{filter:brightness(1.12)}
+.gcw .gcw-cal-day.has-events.is-past:not(.is-selected){opacity:.55}
+.gcw .gcw-cal-day.is-today.has-events .gcw-cal-num{box-shadow:inset 0 0 0 2px #fff}
+.gcw .gcw-cal-day.is-selected{box-shadow:0 0 0 2px var(--gcw-card),0 0 0 4px var(--gcw-text)}
+.gcw .gcw-cal-day:focus-visible{outline:3px solid var(--gcw-text);outline-offset:3px}
+.gcw .gcw-cal-evs{display:none}
+@container (min-width:640px){
+  .gcw .gcw-cal-grid{gap:6px}
+  .gcw .gcw-cal-day{aspect-ratio:auto;min-height:92px;align-items:stretch;justify-content:flex-start;padding:6px;text-align:left}
+  .gcw .gcw-cal-num{width:1.9em;height:1.9em;font-size:.9rem}
+  .gcw .gcw-cal-evs{display:flex;flex-direction:column;gap:2px;margin-top:4px;min-width:0}
+  .gcw .gcw-cal-ev{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;overflow-wrap:anywhere;font-size:.75rem;font-weight:600;line-height:1.3}
+  .gcw .gcw-cal-more{font-weight:400;opacity:.85}
+}
+.gcw .gcw-day{margin-top:20px;padding-top:16px;border-top:1px solid var(--gcw-border)}
+.gcw .gcw-day-h{margin:0 0 6px;font-weight:700;font-size:1rem}
+.gcw .gcw-cal-empty{margin:4px 0 0;font-size:.95rem;color:var(--gcw-muted)}
+.gcw .gcw-row{position:relative;display:flex;align-items:center;gap:14px;padding:10px;margin:0 -10px;border-radius:12px;transition:background .2s ease}
+.gcw .gcw-row:hover{background:color-mix(in srgb,var(--gcw-accent) 8%,transparent)}
+.gcw .gcw-row:has(.gcw-more:focus-visible){outline:3px solid var(--gcw-accent);outline-offset:-3px}
+.gcw .gcw-media.gcw-thumb{flex:none;width:88px;height:66px;aspect-ratio:auto;border-radius:10px}
+.gcw .gcw-row-body{flex:1;min-width:0;display:flex;flex-direction:column;gap:5px}
+.gcw .gcw-row .gcw-title{font-size:1.05rem}
+.gcw .gcw-row .gcw-chips{margin-top:0}
+.gcw .gcw-row .gcw-more{margin:0;padding:0 4px;align-self:center;font-size:1.2rem}
+.gcw .gcw-row:hover .gcw-arrow{transform:translateX(4px)}
+@container (max-width:420px){.gcw .gcw-media.gcw-thumb{width:64px;height:64px}.gcw .gcw-row{gap:12px}}
+
 .gcw .gcw-card{position:relative;display:flex;flex-direction:column;background:var(--gcw-card);color:var(--gcw-text);border:1px solid var(--gcw-border);border-radius:var(--gcw-radius);overflow:hidden;box-shadow:var(--gcw-shadow);transition:transform .25s ease,box-shadow .25s ease}
 .gcw .gcw-card:hover{transform:translateY(-4px);box-shadow:var(--gcw-shadow-hover)}
 .gcw .gcw-card:has(.gcw-more:focus-visible){outline:3px solid var(--gcw-accent);outline-offset:3px}
@@ -456,6 +501,9 @@
     const card = `<div class="gcw-card gcw-skel" aria-hidden="true"><div class="gcw-media"></div><div class="gcw-body">
       <div class="gcw-skel-line" style="width:70%;height:20px"></div><div class="gcw-skel-line" style="width:50%"></div>
       <div class="gcw-skel-line" style="width:90%"></div><div class="gcw-skel-line" style="width:80%"></div></div></div>`;
+    if (layout === 'calendar') {
+      return '<div class="gcw-skel-line" aria-busy="true" style="height:420px;border-radius:var(--gcw-radius)"></div>';
+    }
     return layout === 'carousel'
       ? `<div class="gcw-carousel" aria-busy="true"><div class="gcw-track">${card.repeat(n)}</div></div>`
       : `<div class="gcw-grid" aria-busy="true">${card.repeat(n)}</div>`;
@@ -520,15 +568,131 @@
     el.innerHTML = `<div class="gcw-msg">${esc(text)}${detail ? `<small>${esc(detail)}</small>` : ''}</div>`;
   };
 
+  // ---------- Calendar (month view) ----------
+  // Days are handled as UTC midnights keyed 'YYYY-MM-DD', so daylight saving never shifts a day.
+  const keyOf = d => d.toISOString().slice(0, 10);
+  const keyFromParts = p => `${p.year}-${p.month}-${p.day}`;
+
+  function setupCalendar(el, events, cfg, tz) {
+    const root = el.querySelector('.gcw-cal');
+    const fmt = opts => new Intl.DateTimeFormat(cfg.locale, { ...opts, timeZone: 'UTC' });
+    const dayLabel = fmt({ weekday: 'long', month: 'long', day: 'numeric' });
+    const todayKey = keyFromParts(partsIn(new Date(), tz));
+    const today = ymdToDate(todayKey);
+
+    // Which days each event covers (multi-day events fill every day they span)
+    const byDay = new Map();
+    events.forEach((e, i) => {
+      const last = e.allDay ? e.ep : partsIn(new Date(Math.max(+e.start, +e.end - 1)), e.ftz);
+      let t = +ymdToDate(keyFromParts(e.sp));
+      const end = Math.min(+ymdToDate(keyFromParts(last)), t + 62 * DAY);
+      for (; t <= end; t += DAY) {
+        const k = keyOf(new Date(t));
+        if (!byDay.has(k)) byDay.set(k, []);
+        byDay.get(k).push(i);
+      }
+    });
+    const days = [...byDay.keys()].sort();
+
+    // Start on today if it has events, otherwise the next day that does
+    let selected = byDay.has(todayKey) ? todayKey : days.find(k => k >= todayKey) || null;
+    const startDate = ymdToDate(selected || todayKey);
+    let y = startDate.getUTCFullYear(), m = startDate.getUTCMonth();
+    const monthIndex = d => d.getUTCFullYear() * 12 + d.getUTCMonth();
+    const minMonth = monthIndex(today);
+    const maxMonth = Math.max(minMonth, days.length ? monthIndex(ymdToDate(days[days.length - 1])) : minMonth);
+
+    const weekdays = Array.from({ length: 7 }, (_, i) => {
+      const d = Date.UTC(2023, 0, 1 + ((i + cfg.weekStart) % 7)); // Jan 1, 2023 was a Sunday
+      return `<span class="gcw-cal-wd" aria-hidden="true">${esc(fmt({ weekday: 'short' }).format(d))}</span>`;
+    }).join('');
+
+    function dayPanel() {
+      if (!selected) return events.length ? '' : `<div class="gcw-day"><p class="gcw-cal-empty">${esc(cfg.empty)}</p></div>`;
+      const rows = (byDay.get(selected) || []).map(j => {
+        const e = events[j];
+        const loc = e.location ? `<p class="gcw-meta">${isUrl(e.location) ? ICON.video : ICON.pin}<span>${isUrl(e.location) ? 'Online' : esc(e.location)}</span></p>` : '';
+        return `<div class="gcw-row">
+          <div class="gcw-media gcw-thumb">${mediaHTML(e, cfg, false)}</div>
+          <div class="gcw-row-body">
+            <h4 class="gcw-title">${esc(e.title)}</h4>
+            ${highlightHTML(e)}
+            <p class="gcw-meta">${ICON.clock}<span>${esc(whenText(e, cfg.locale))}</span></p>
+            ${loc}
+          </div>
+          <button type="button" class="gcw-more" data-i="${j}" aria-haspopup="dialog" aria-label="Event details: ${esc(e.title)}"><span class="gcw-arrow" aria-hidden="true">→</span></button>
+        </div>`;
+      }).join('');
+      return `<div class="gcw-day"><p class="gcw-day-h">${esc(dayLabel.format(ymdToDate(selected)))}</p>
+        ${rows || '<p class="gcw-cal-empty">No events on this day.</p>'}</div>`;
+    }
+
+    function render() {
+      const first = Date.UTC(y, m, 1);
+      const lead = (new Date(first).getUTCDay() - cfg.weekStart + 7) % 7;
+      const cellCount = Math.ceil((lead + new Date(Date.UTC(y, m + 1, 0)).getUTCDate()) / 7) * 7;
+      let grid = '';
+      for (let i = 0; i < cellCount; i++) {
+        const date = new Date(first + (i - lead) * DAY);
+        const k = keyOf(date);
+        const idx = byDay.get(k) || [];
+        const cls = ['gcw-cal-day', date.getUTCMonth() !== m && 'is-out', k < todayKey && 'is-past',
+          k === todayKey && 'is-today', idx.length && 'has-events', k === selected && 'is-selected'].filter(Boolean).join(' ');
+        const num = `<span class="gcw-cal-num">${date.getUTCDate()}</span>`;
+        if (!idx.length) { grid += `<div class="${cls}">${num}</div>`; continue; }
+        const titles = idx.slice(0, 2).map(j => `<span class="gcw-cal-ev">${esc(events[j].title)}</span>`).join('') +
+          (idx.length > 2 ? `<span class="gcw-cal-ev gcw-cal-more">+${idx.length - 2} more</span>` : '');
+        grid += `<button type="button" class="${cls}" data-day="${k}" aria-pressed="${k === selected}"
+          aria-label="${esc(dayLabel.format(date))}: ${idx.length} event${idx.length > 1 ? 's' : ''}">${num}<span class="gcw-cal-evs" aria-hidden="true">${titles}</span></button>`;
+      }
+      const ym = y * 12 + m;
+      root.innerHTML = `
+        <div class="gcw-cal-head">
+          <h3 class="gcw-title gcw-cal-title" aria-live="polite">${esc(fmt({ month: 'long', year: 'numeric' }).format(first))}</h3>
+          <div class="gcw-cal-nav">
+            <button type="button" class="gcw-cal-today"${ym === minMonth ? ' hidden' : ''}>Today</button>
+            <button type="button" class="gcw-nav-btn gcw-cal-prev" aria-label="Previous month"${ym <= minMonth ? ' disabled' : ''}>${ICON.left}</button>
+            <button type="button" class="gcw-nav-btn gcw-cal-next" aria-label="Next month"${ym >= maxMonth ? ' disabled' : ''}>${ICON.right}</button>
+          </div>
+        </div>
+        <div class="gcw-cal-grid">${weekdays}${grid}</div>
+        ${dayPanel()}`;
+    }
+
+    root.addEventListener('click', ev => {
+      const t = ev.target;
+      let focus;
+      const day = t.closest('.gcw-cal-day[data-day]');
+      if (day) {
+        selected = day.dataset.day;
+        const d = ymdToDate(selected);
+        y = d.getUTCFullYear(); m = d.getUTCMonth();
+        focus = `[data-day="${selected}"]`;
+      } else if (t.closest('.gcw-cal-prev')) { m--; focus = '.gcw-cal-prev'; }
+      else if (t.closest('.gcw-cal-next')) { m++; focus = '.gcw-cal-next'; }
+      else if (t.closest('.gcw-cal-today')) {
+        y = today.getUTCFullYear(); m = today.getUTCMonth(); focus = '.gcw-cal-next';
+        if (byDay.has(todayKey)) selected = todayKey;
+      } else return;
+      if (m < 0) { m = 11; y--; } else if (m > 11) { m = 0; y++; }
+      render();
+      const f = root.querySelector(focus);
+      if (f && !f.disabled) f.focus();
+    });
+    render();
+  }
+
   // ---------- Data ----------
   async function fetchCalendar(id, cfg) {
     if (cfg.apiKey === 'DEMO' && window.GCW_MOCK) return window.GCW_MOCK;
     const now = new Date();
+    // The calendar view also shows earlier events from the current month
+    const from = cfg.layout === 'calendar' ? new Date(now.getFullYear(), now.getMonth(), 1) : now;
     const q = new URLSearchParams({
       key: cfg.apiKey,
       singleEvents: 'true',
       orderBy: 'startTime',
-      timeMin: now.toISOString(),
+      timeMin: from.toISOString(),
       timeMax: new Date(+now + cfg.days * DAY).toISOString(),
       maxResults: String(Math.min(cfg.max, 250))
     });
@@ -546,13 +710,16 @@
     // Site-wide defaults (window.GCW_DEFAULTS), overridden by any data-* set on this block
     const d = Object.assign({}, window.GCW_DEFAULTS);
     for (const [k, v] of Object.entries(el.dataset)) if (v !== '') d[k] = v;
+    const layout = ['grid', 'list', 'carousel', 'calendar'].includes(d.layout) ? d.layout : 'carousel';
     const cfg = {
       uid: `gcw${++uidCounter}`,
       apiKey: String(d.apiKey || '').trim(),
       calendars: String(d.calendarId || '').split(',').map(s => s.trim()).filter(Boolean),
-      max: Math.max(1, parseInt(d.maxEvents, 10) || 9),
+      // The calendar view shows every event in range, not just the next few
+      max: layout === 'calendar' ? 250 : Math.max(1, parseInt(d.maxEvents, 10) || 9),
       days: Math.max(1, parseInt(d.daysAhead, 10) || 365),
-      layout: ['grid', 'list', 'carousel'].includes(d.layout) ? d.layout : 'carousel',
+      layout,
+      weekStart: /^(1|mon)/i.test(String(d.weekStart || '')) ? 1 : 0,
       fit: d.imageFit === 'contain' ? 'contain' : 'cover',
       fallback: String(d.fallbackImage || '').trim(),
       tz: String(d.timeZone || '').trim(),
@@ -573,10 +740,10 @@
     }
     el.innerHTML = skeleton(Math.min(cfg.max, 3), cfg.layout);
 
-    let events;
+    let events, tz;
     try {
       const results = await Promise.all(cfg.calendars.map(id => fetchCalendar(id, cfg)));
-      const tz = cfg.tz || results[0].timeZone || Intl.DateTimeFormat().resolvedOptions().timeZone;
+      tz = cfg.tz || results[0].timeZone || Intl.DateTimeFormat().resolvedOptions().timeZone;
       events = results
         .flatMap(r => r.items || [])
         .filter(ev => ev.status !== 'cancelled' && ev.start && (ev.start.date || ev.start.dateTime))
@@ -593,13 +760,18 @@
       // Only site editors (on *.squarespace.com) see the technical detail.
       return message(el, "Sorry, we couldn't load upcoming events right now.", isEditor ? err.message : '');
     }
-    if (!events.length) return message(el, cfg.empty);
+    if (!events.length && cfg.layout !== 'calendar') return message(el, cfg.empty);
 
-    const cards = events.map((e, i) => cardHTML(e, i, cfg)).join('');
-    el.innerHTML = `${cfg.layout === 'carousel' ? carouselHTML(cards) : `<div class="gcw-grid">${cards}</div>`}
-      <dialog class="gcw-dialog" aria-labelledby="${cfg.uid}-title"></dialog>`;
+    let body;
+    if (cfg.layout === 'calendar') body = '<div class="gcw-cal"></div>';
+    else {
+      const cards = events.map((e, i) => cardHTML(e, i, cfg)).join('');
+      body = cfg.layout === 'carousel' ? carouselHTML(cards) : `<div class="gcw-grid">${cards}</div>`;
+    }
+    el.innerHTML = `${body}<dialog class="gcw-dialog" aria-labelledby="${cfg.uid}-title"></dialog>`;
     const dlg = el.querySelector('.gcw-dialog');
     if (cfg.layout === 'carousel') setupCarousel(el);
+    if (cfg.layout === 'calendar') setupCalendar(el, events, cfg, tz);
 
     el.addEventListener('click', ev => {
       const more = ev.target.closest('.gcw-more');

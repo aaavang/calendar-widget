@@ -75,6 +75,11 @@ in `calendar-widget.js` as a new version. Either way, every page updates.
   more events than fit, and a "3 / 12" counter replaces the dots when there are many pages.
 - `grid`: all cards visible, wrapping onto new rows.
 - `list`: wide rows with the image on the left.
+- `calendar`: a month view where days with events are filled in your accent color. On wide
+  blocks the filled days also show event titles; on phones they're just filled squares. Clicking a
+  day lists its events below the calendar, and clicking one opens the usual popup. Multi-day events
+  fill every day they span. It shows every event in range (ignoring `maxEvents`), including earlier
+  ones this month. Set `weekStart: 'monday'` (or `data-week-start="monday"`) to start weeks on Monday.
 
 **Plan note:** Code Injection and JavaScript in Code Blocks need a Squarespace Core plan or higher
 (the old "Business" tier or above).
